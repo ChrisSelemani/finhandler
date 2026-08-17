@@ -25,6 +25,14 @@ export const transactionAPI = {
   getStats: (params) => API.get("/transactions/stats", { params }),
 };
 
+export const budgetAPI = {
+  getAll: () => API.get("/budgets"),
+  getStatus: () => API.get("/budgets/status"),
+  create: (data) => API.post("/budgets", data),
+  update: (id, data) => API.put("/budgets/" + id, data),
+  delete: (id) => API.delete("/budgets/" + id),
+};
+
 export const userAPI = {
   getProfile: () => API.get("/user/profile"),
   updateProfile: (data) => API.put("/user/profile", data),
