@@ -18,21 +18,24 @@ const Login = () => {
   };
 
   return (
-    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" }}>
-      <div style={{ background: "white", borderRadius: "16px", padding: "40px", width: "100%", maxWidth: "400px", boxShadow: "0 20px 60px rgba(0,0,0,0.3)" }}>
-        <h1 style={{ textAlign: "center", color: "#1e293b", marginBottom: "8px" }}>FinHandler</h1>
-        <p style={{ textAlign: "center", color: "#64748b", marginBottom: "32px" }}>Sign in to your account</p>
+    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)", padding: "20px" }}>
+      <div className="animate-scale-in" style={{ background: "white", borderRadius: "16px", padding: "40px", width: "100%", maxWidth: "400px", boxShadow: "0 20px 60px rgba(0,0,0,0.3)" }}>
+        <div style={{ textAlign: "center", marginBottom: "32px" }}>
+          <div style={{ fontSize: "48px", marginBottom: "8px", animation: "float 3s ease-in-out infinite" }}>💰</div>
+          <h1 className="gradient-text" style={{ fontSize: "32px", fontWeight: "bold" }}>FinHandler</h1>
+          <p style={{ color: "#64748b", marginTop: "8px" }}>Sign in to your account</p>
+        </div>
         <form onSubmit={handleSubmit}>
           <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required
-            style={{ width: "100%", padding: "12px", border: "1px solid #e2e8f0", borderRadius: "8px", fontSize: "16px", marginBottom: "16px" }} />
+            style={{ width: "100%", padding: "12px 16px", border: "1px solid #e2e8f0", borderRadius: "8px", fontSize: "16px", marginBottom: "16px" }} />
           <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required
-            style={{ width: "100%", padding: "12px", border: "1px solid #e2e8f0", borderRadius: "8px", fontSize: "16px", marginBottom: "16px" }} />
-          <button type="submit" disabled={loading}
-            style={{ width: "100%", padding: "12px", background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)", color: "white", border: "none", borderRadius: "8px", fontSize: "16px", fontWeight: "600", cursor: "pointer" }}>
-            {loading ? "Signing in..." : "Sign In"}
+            style={{ width: "100%", padding: "12px 16px", border: "1px solid #e2e8f0", borderRadius: "8px", fontSize: "16px", marginBottom: "16px" }} />
+          <button type="submit" disabled={loading} className="btn-primary"
+            style={{ width: "100%", padding: "12px", background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)", color: "white", border: "none", borderRadius: "8px", fontSize: "16px", fontWeight: "600", cursor: "pointer", marginBottom: "16px" }}>
+            {loading ? "Signing in..." : "Sign In →"}
           </button>
         </form>
-        <p style={{ textAlign: "center", marginTop: "20px", color: "#64748b" }}>
+        <p style={{ textAlign: "center", color: "#64748b" }}>
           Don't have an account? <Link to="/register" style={{ color: "#667eea", fontWeight: "600" }}>Sign up</Link>
         </p>
       </div>
