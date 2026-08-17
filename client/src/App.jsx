@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { TransactionProvider } from "./context/TransactionContext";
 import { LanguageProvider } from "./context/LanguageContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import Layout from "./components/Common/Layout";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Transactions from "./components/Transactions/Transactions";
@@ -21,16 +22,18 @@ const PrivateRoute = ({ children }) => {
 function App() {
   return React.createElement(Router, null,
     React.createElement(AuthProvider, null,
-      React.createElement(LanguageProvider, null,
-        React.createElement(Toaster, { position: "top-right" }),
-        React.createElement(Routes, null,
-          React.createElement(Route, { path: "/login", element: React.createElement(Login) }),
-          React.createElement(Route, { path: "/register", element: React.createElement(Register) }),
-          React.createElement(Route, { path: "/", element: React.createElement(PrivateRoute, null, React.createElement(TransactionProvider, null, React.createElement(Layout))) },
-            React.createElement(Route, { index: true, element: React.createElement(Dashboard) }),
-            React.createElement(Route, { path: "transactions", element: React.createElement(Transactions) }),
-            React.createElement(Route, { path: "budget", element: React.createElement(Budget) }),
-            React.createElement(Route, { path: "profile", element: React.createElement(Profile) })
+      React.createElement(ThemeProvider, null,
+        React.createElement(LanguageProvider, null,
+          React.createElement(Toaster, { position: "top-right" }),
+          React.createElement(Routes, null,
+            React.createElement(Route, { path: "/login", element: React.createElement(Login) }),
+            React.createElement(Route, { path: "/register", element: React.createElement(Register) }),
+            React.createElement(Route, { path: "/", element: React.createElement(PrivateRoute, null, React.createElement(TransactionProvider, null, React.createElement(Layout))) },
+              React.createElement(Route, { index: true, element: React.createElement(Dashboard) }),
+              React.createElement(Route, { path: "transactions", element: React.createElement(Transactions) }),
+              React.createElement(Route, { path: "budget", element: React.createElement(Budget) }),
+              React.createElement(Route, { path: "profile", element: React.createElement(Profile) })
+            )
           )
         )
       )

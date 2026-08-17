@@ -123,7 +123,7 @@ input:focus, select:focus, textarea:focus {
     left: 0 !important;
     right: 0 !important;
     width: 100% !important;
-    height: 60px !important;
+    height: 65px !important;
     flex-direction: row !important;
     justify-content: space-around !important;
     align-items: center !important;
@@ -131,6 +131,7 @@ input:focus, select:focus, textarea:focus {
     z-index: 1000 !important;
     background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%) !important;
     border-top: 1px solid #334155;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
   }
 
   .sidebar .logo-text {
@@ -141,7 +142,11 @@ input:focus, select:focus, textarea:focus {
     display: none !important;
   }
 
-  .sidebar .nav-icon {
+  .sidebar .desktop-only {
+    display: none !important;
+  }
+
+  .sidebar .nav-icon-mobile {
     display: block !important;
     font-size: 24px !important;
   }
@@ -150,13 +155,20 @@ input:focus, select:focus, textarea:focus {
     padding: 8px 12px !important;
     margin-bottom: 0 !important;
     display: flex !important;
+    flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
-    width: auto !important;
-    flex: 1;
+    width: 60px !important;
+    min-width: 60px !important;
+    flex: 0 0 auto !important;
+    font-size: 24px !important;
+    border-radius: 12px !important;
+    border: none !important;
+    background: transparent !important;
   }
 
   .main-content {
+    margin-left: 0 !important;
     padding: 16px !important;
     padding-bottom: 80px !important;
   }
@@ -167,11 +179,11 @@ input:focus, select:focus, textarea:focus {
   }
 
   .stat-card {
-    padding: 20px !important;
+    padding: 16px !important;
   }
 
   .stat-card h2 {
-    font-size: 24px !important;
+    font-size: 22px !important;
   }
 
   .period-buttons {
@@ -186,8 +198,8 @@ input:focus, select:focus, textarea:focus {
     min-width: calc(50% - 6px);
   }
 
-  .welcome-text h2 {
-    font-size: 22px !important;
+  h2 {
+    font-size: 20px !important;
   }
 
   h3 {
@@ -201,26 +213,10 @@ input:focus, select:focus, textarea:focus {
     padding-bottom: 76px !important;
   }
 
-  .stats-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  .stat-card {
-    padding: 16px !important;
-  }
-
-  .period-buttons {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-
-  .period-btn {
-    padding: 8px 10px !important;
-    font-size: 12px !important;
-  }
-
-  .welcome-text h2 {
-    font-size: 20px !important;
+  .sidebar-link {
+    width: 50px !important;
+    min-width: 50px !important;
+    font-size: 22px !important;
   }
 }
 
