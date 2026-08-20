@@ -18,9 +18,7 @@ exports.getTransactions = async (req, res) => {
     if (type) query.type = type;
     if (category) query.category = category;
     if (search) {
-      query["$or"] = [
-        { description: { "$regex": search, "$options": "i" } }
-      ];
+      query["$or"] = [{ description: { "$regex": search, "$options": "i" } }];
     }
     if (startDate || endDate) {
       query.date = {};
@@ -51,9 +49,26 @@ exports.getTransactionStats = async (req, res) => {
       { "$group": { _id: "$type", total: { "$sum": "$amount" }, count: { "$sum": 1 } } }
     ]);
 
+    const categoryBreakdown = await Transaction.aggregate([
+      { "$match": { user: userId, type: "expense", date: { "$gte": startDate } } },
+      { "$group": { _id: "$category", total: { "$sum": "$amount" }, count: { "$sum": 1 } } },
+      { "$sort": { total: -1 } }
+    ]);
+
+    const dailyTotals = await Transaction.aggregate([
+      { "$match": { user: userId, date: { "$gte": startDate } } },
+      { "$group": {
+          _id: { "$dateToString": { format: "%Y-%m-%d", date: "$date" } },
+          income: { "$sum": { "$cond": [{ "$eq": ["$type", "income"] }, "$amount", 0] } },
+          expenses: { "$sum": { "$cond": [{ "$eq": ["$type", "expense"] }, "$amount", 0] } }
+        }
+      },
+      { "$sort": { _id: 1 } }
+    ]);
+
     const history = await Transaction.find({ user: req.user.id, date: { "$gte": startDate } }).sort("date");
 
-    res.json({ period, summary, history, startDate });
+    res.json({ period, summary, categoryBreakdown, dailyTotals, history, startDate });
   } catch (error) {
     console.error("Stats error:", error);
     res.status(500).json({ message: error.message });

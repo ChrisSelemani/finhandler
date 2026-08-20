@@ -20,7 +20,7 @@ const PrivateRoute = ({ children }) => {
 };
 
 function App() {
-  return React.createElement(Router, null,
+  return React.createElement(Router, { future: { v7_startTransition: true, v7_relativeSplatPath: true } },
     React.createElement(AuthProvider, null,
       React.createElement(ThemeProvider, null,
         React.createElement(LanguageProvider, null,
